@@ -1,0 +1,18 @@
+<odoo>
+    <record id="estate_property_list" model="ir.ui.view">
+        <field name="name">estate_property.list</field>
+        <field name="model">estate_property</field>
+        <field name="arch" type="xml">
+            <tree string="Properties" decoration-success="state == 'offer_recieved' or state == 'offer_accepted'" decoration-bf="state == 'offer_accepted'" decoration-muted="state == 'sold'">
+                <field name="state" invisible="1"/>
+                <field name="name" string="Title" />
+                <field name="postcode" string="Postcode" />
+                <field name="bedrooms" string="Bedrooms" />
+                <field name="living_area" string="Living Area (m²)" />
+                <field name="expected_price" string="Expected Price" />
+                <field name="selling_price" string="Selling Price" />
+                <field name="date_availability" string="Availible From" optional="True"/>
+            </tree>
+        </field>
+    </record>
+</odoo>

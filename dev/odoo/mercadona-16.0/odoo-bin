@@ -1,0 +1,4 @@
+#!/bin/bash
+
+params=" -c ./odoo.conf --log-level info "
+sudo -u didac ./venv/bin/python ./server/odoo-bin $@ $params

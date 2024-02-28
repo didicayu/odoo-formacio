@@ -1,0 +1,1 @@
+/opt/odoo/community/16.0/oca/mis-builder-16.0/CONTRIBUTING.md

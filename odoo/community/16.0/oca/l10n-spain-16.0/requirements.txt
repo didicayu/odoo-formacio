@@ -1,0 +1,13 @@
+# generated from manifests external_dependencies
+chardet
+cryptography==3.4.8
+deepdiff
+pycountry
+pycryptodome
+qrcode
+requests
+requests_pkcs12
+unidecode
+xmlsig
+xmltodict
+zeep

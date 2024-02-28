@@ -19,6 +19,7 @@
     	'views/estate_property_list_view.xml',
     	'views/estate_property_view_form.xml',
     	'views/estate_property_search_view.xml',
+        'views/estate_users_view.xml',
     ],
     'application': True,
 }

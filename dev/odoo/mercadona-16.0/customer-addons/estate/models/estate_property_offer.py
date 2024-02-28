@@ -60,12 +60,15 @@ class EstatePropertyOffer(models.Model):
 
     @api.model
     def create(self, vals):
-        for offer in self:
-            property_offers = self.env['estate_property'].browse(vals['offer_ids'])
-            for o in property_offers:
-                if o.price > offer.price:
-                    raise exceptions.UserError("can't create an offer with a lower price than an existing one")
+        estate_property = self.env['estate_property'].browse(vals.get('property_id'))
 
-            offer.property_id.state = 'offer_received'
+        existing_offers = estate_property.offer_ids
+
+        for offer in existing_offers:
+            if offer.price > self.price:
+                raise exceptions.UserError("Can't create an offer with a lower price than an existing one")
+
+        if estate_property:
+            estate_property.write({'state': 'offer_received'})
 
         return super().create(vals)

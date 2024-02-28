@@ -1,1 +1,1 @@
-from . import estate_property, estate_property_type, estate_property_tag, estate_property_offer, estate_inherited_users
+from . import estate_property, estate_property_type, estate_property_tag, estate_property_offer, inherited_users

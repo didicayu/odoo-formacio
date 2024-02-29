@@ -65,6 +65,7 @@ class EstateProperty(models.Model):
             
     @api.onchange("garden")
     def _onchange_garden(self):
+        self.ensure_one()
         if not self.garden:
             self.garden_area = 0
             self.garden_orientation = False

@@ -6757,6 +6757,8 @@ class Model(AbstractModel):
     _abstract = False           # not abstract
     _transient = False          # not transient
 
+
+
 class TransientModel(Model):
     """ Model super-class for transient records, meant to be temporarily
     persistent, and regularly vacuum-cleaned.

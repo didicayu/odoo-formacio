@@ -9,6 +9,7 @@
     """,
     'data': [
     	'data/ir.model.access.csv',
+        'views/estate_property_kanban_view.xml',
         'views/estate_propertytype_form_view.xml',
         'views/estate_propertytype_list_view.xml',
         'views/estate_propertyoffers_views.xml',

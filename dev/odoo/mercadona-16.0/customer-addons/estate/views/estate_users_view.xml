@@ -14,5 +14,14 @@
                 </xpath>
             </field>
         </record>
+
+<!--        report for user's properties-->
+        <record id="inherited_users_report" model="ir.actions.report">
+            <field name="name">Report all properties</field>
+            <field name="model">res.users</field>
+            <field name="report_type">qweb-pdf</field>
+            <field name="report_name">estate.report_user_properties</field>
+            <field name="binding_model_id" ref="base.model_res_users"/>
+        </record>
     </data>
 </odoo>

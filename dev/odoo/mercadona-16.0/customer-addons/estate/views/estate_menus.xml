@@ -3,6 +3,8 @@
         <menuitem id="estate_first_level_menu" name="Advertisments">
             <menuitem id="estate_model_menu_action" action="estate_property_action"
                 name="Properties" />
+
+            <menuitem id="estate_print_property" action="action_print_property" name="Print a property"/>
         </menuitem>
 
         <menuitem id="estate_propertytype_first_level_menu" name="Settings">
@@ -12,6 +14,10 @@
 
             <menuitem id="estate_propertytag_model_menu_action" action="estate_propertytag_action"
                 name="Property Tags" />
+        </menuitem>
+
+        <menuitem id="estate_propertyusers_menu_action" action="estate_propertyusers_action" name="User's properties">
+
         </menuitem>
     </menuitem>
 </odoo>

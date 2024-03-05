@@ -9,7 +9,11 @@
     """,
     'data': [
     	'data/ir.model.access.csv',
+        'wizard/print_property_view.xml',
         'views/estate_property_kanban_view.xml',
+        'views/estate_propertyusers_views.xml',
+        'views/estate_propertyusers_form.xml',
+        'views/estate_propertyusers_list.xml',
         'views/estate_propertytype_form_view.xml',
         'views/estate_propertytype_list_view.xml',
         'views/estate_propertyoffers_views.xml',
@@ -21,6 +25,10 @@
     	'views/estate_property_view_form.xml',
     	'views/estate_property_search_view.xml',
         'views/estate_users_view.xml',
+        'report/estate_property_offers_report.xml',
+        'report/offer_table_template.xml',
+        'report/user_offers_report.xml',
+        'report/property_info_template.xml',
     ],
     'application': True,
 }

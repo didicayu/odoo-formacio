@@ -1,0 +1,32 @@
+<odoo>
+    <template id="report_user_properties">
+    <t t-call="web.html_container">
+        <t t-foreach="docs" t-as="property">
+            <t t-call="web.html_container">
+                <header style="margin 0; padding 0;">
+                    <div>
+<!--                    -->
+                        <img src="https://www.rgbconsulting.com/web/image/website/3/logo/RGB%20Consulting?unique=c1d7897"/>
+                    </div>
+
+                    <hr class="rounded"/>
+                    <div>
+                        <p>
+                            RGB Consulting
+                            Lleida 25001
+                        </p>
+                    </div>
+                </header>
+                <div class="page" style="margin 0; padding 0;">
+
+                    <t t-foreach="user.property_ids" t-as="p">
+<!--                        PRINT PROPERTY INFO-->
+                        <t t-call="estate.property_info"/>
+                        <div style="page-break-after: always;"/>
+                    </t>
+                </div>
+            </t>
+        </t>
+    </t>
+</template>
+</odoo>

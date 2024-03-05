@@ -6,4 +6,12 @@
 		<field name="context">{'search_default_filter_available': True}</field>
 		<field name="view_id" ref="estate.properties_kanban_view"/>
 	</record>
+
+	<record id="report_estate_property_offers" model="ir.actions.report">
+		<field name="name">Property Offers Report</field>
+		<field name="model">estate_property</field>
+		<field name="report_type">qweb-pdf</field>
+		<field name="report_name">estate.report_offer</field>
+		<field name="binding_model_id" ref="model_estate_property"/>
+	</record>
 </odoo>

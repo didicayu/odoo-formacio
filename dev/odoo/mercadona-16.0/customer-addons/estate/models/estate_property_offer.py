@@ -65,7 +65,7 @@ class EstatePropertyOffer(models.Model):
         existing_offers = estate_property.offer_ids
 
         for offer in existing_offers:
-            if offer.price > self.price:
+            if offer.price > vals['price']:
                 raise exceptions.UserError("Can't create an offer with a lower price than an existing one")
 
         if estate_property:

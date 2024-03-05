@@ -5,6 +5,7 @@ class EstateProperty(models.Model):
     _name = "estate_property"
     _description = "Real Estate Properties"
     _order = "id desc"
+
     
     name = fields.Char(required=True, default="Unknown")
     description = fields.Text()

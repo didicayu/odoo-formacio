@@ -1,0 +1,29 @@
+<odoo>
+    <template id="report_offer">
+    <t t-call="web.html_container">
+        <t t-foreach="docs" t-as="property">
+            <t t-call="web.html_container">
+                <div class="page">
+
+                    <div>
+                        <img src="https://www.rgbconsulting.com/web/image/website/3/logo/RGB%20Consulting?unique=c1d7897"/>
+                    </div>
+
+                    <hr class="rounded"/>
+                    <div>
+                        <p>
+                            RGB Consulting,
+                            Lleida 25001
+                        </p>
+                    </div>
+
+<!--                    Print Property INFO-->
+                    <t t-set="p" t-value="property"/>
+                    <t t-call="estate.property_info"/>
+
+                </div>
+            </t>
+        </t>
+    </t>
+</template>
+</odoo>

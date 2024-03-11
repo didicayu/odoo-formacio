@@ -1,0 +1,41 @@
+<odoo>
+    <record id="keys_action" model="ir.actions.act_window">
+        <field name="name">Product Keys</field>
+        <field name="res_model">steam.key</field>
+        <field name="view_mode">tree,form</field>
+<!--        <field name="view_id" ref="steam.key_tree"/>-->
+    </record>
+
+    <record id="key_tree" model="ir.ui.view">
+        <field name="name">steam.key.tree</field>
+        <field name="model">steam.key</field>
+        <field name="arch" type="xml">
+            <tree string="Product Keys">
+                <field name="key_code"/>
+                <field name="game_id" string="Game"/>
+                <field name="user_id" string="user"/>
+            </tree>
+        </field>
+    </record>
+
+    <record id="key_form" model="ir.ui.view">
+        <field name="name">steam.key.form</field>
+        <field name="model">steam.key</field>
+        <field name="arch" type="xml">
+            <form string="Product Key">
+                <sheet>
+                    <h1>
+                        Product Key:
+                    </h1>
+                    <separator/>
+                    <group>
+                        <field name="key_code" string="Product Key: "/>
+                        <field name="validity_deadline" string="Valid Until: "/>
+                        <field name="game_id" string="Key linked to: "/>
+                        <field name="user_id" string="Belongs to: "/>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+</odoo>

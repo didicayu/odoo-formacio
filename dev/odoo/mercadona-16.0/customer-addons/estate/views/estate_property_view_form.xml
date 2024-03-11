@@ -52,9 +52,25 @@
                                 <field name="buyer_id" string="Buyer" />
                             </group>
                         </page>
+
                     </notebook>
+
+                    <separator/>
+
+                    <div class="oe_chatter">
+                        <field name="message_follower_ids" widget="mail_followers"/>
+                        <field name="message_ids" widget="mail_thread"/>
+                    </div>
+
                 </sheet>
             </form>
         </field>
+    </record>
+
+    <record id="mt_state_change" model="mail.message.subtype">
+        <field name="name">Property confirmed</field>
+        <field name="res_model">estate_property</field>
+        <field name="default" eval="True"/>
+        <field name="description">Property confirmed!</field>
     </record>
 </odoo>

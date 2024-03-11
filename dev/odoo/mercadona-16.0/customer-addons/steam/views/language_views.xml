@@ -1,0 +1,7 @@
+<odoo>
+    <record id="steam_language_action" model="ir.actions.act_window">
+        <field name="name">Game Language</field>
+        <field name="res_model">steam.language</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+</odoo>

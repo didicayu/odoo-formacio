@@ -1,0 +1,14 @@
+<odoo>
+    <menuitem id="steam_menu_root" name="Steam">
+        <menuitem id="products_first_level_menu" name="Products">
+            <menuitem id="videogame_menu_action" name="Video Games" action="videogame_action"/>
+        </menuitem>
+
+        <menuitem id="configuration_first_level_menu" name="Configuration">
+            <menuitem id="key_menu_action" name="Product Keys" action="keys_action"/>
+            <menuitem id="tag_menu_action" name="Game Tags" action="steam_tag_action"/>
+            <menuitem id="users_menu_action" name="Users" action="steam_users_action"/>
+            <menuitem id="language_menu_action" name="Language" action="steam_language_action"/>
+        </menuitem>
+    </menuitem>
+</odoo>

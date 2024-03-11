@@ -1,7 +1,7 @@
 {
     'name': "Real State module",
     'version': '1.0',
-    'depends': ['base'],
+    'depends': ['base', 'mail'],
     'author': "Dídac Cayuela",
     'category': 'Real State',
     'description': """

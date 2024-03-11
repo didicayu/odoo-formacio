@@ -1,0 +1,7 @@
+<odoo>
+    <record id="group_project_image" model="res.groups">
+        <field name="name">group project image</field>
+        <field name="implied_ids" eval="[(4, ref('base.group_user'))]"/>
+        <field name="category_id" ref="base.module_category_hidden"/>
+    </record>
+</odoo>

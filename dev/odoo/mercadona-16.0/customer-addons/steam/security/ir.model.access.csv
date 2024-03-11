@@ -1,0 +1,5 @@
+id,name,model_id/id,group_id/id,perm_read,perm_write,perm_create,perm_unlink
+access_steam_product,access_steam_product,model_product_product,base.group_user,1,1,1,1
+access_steam_key,access_steam_key,model_steam_key,base.group_user,1,1,1,1
+access_steam_tag,access_steam_tag,model_steam_tag,base.group_user,1,1,1,1
+access_steam_language,access_steam_language,model_steam_language,base.group_user,1,1,1,1

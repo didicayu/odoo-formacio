@@ -2,8 +2,8 @@ from odoo import models, fields, api
 
 SUBSCRIPTION_TYPES = [
     ('1_month', '1 Month Subscription'),
-    ('2_months', '2 Months Subscription'),
     ('3_months', '3 Months Subscription'),
+    ('6_months', '6 Months Subscription'),
     ('12_months', '12 Months Subscription'),
 ]
 

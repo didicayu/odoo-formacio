@@ -9,14 +9,14 @@
     """,
     'data': [
     	'data/ir.model.access.csv',
+        'views/estate_propertyoffers_views.xml', # A
+        'views/estate_propertyusers_list.xml',
         'wizard/print_property_view.xml',
         'views/estate_property_kanban_view.xml',
         'views/estate_propertyusers_views.xml',
         'views/estate_propertyusers_form.xml',
-        'views/estate_propertyusers_list.xml',
         'views/estate_propertytype_form_view.xml',
         'views/estate_propertytype_list_view.xml',
-        'views/estate_propertyoffers_views.xml',
         'views/estate_propertytag_views.xml',
         'views/estate_propertytype_views.xml',
     	'views/estate_property_views.xml',

@@ -3,6 +3,6 @@
 		<field name="name">User's Properties</field>
 		<field name="res_model">res.users</field>
 		<field name="view_mode">tree,form</field>
-        <field name="view_id" ref="estate_propertyusers_list"/>
+        <field name="view_id" ref="estate.propertyusers_list"/>
 	</record>
 </odoo>

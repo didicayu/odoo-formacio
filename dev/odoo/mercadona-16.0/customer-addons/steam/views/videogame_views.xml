@@ -1,14 +1,14 @@
 <odoo>
     <record id="videogame_action" model="ir.actions.act_window">
         <field name="name">VideoGames</field>
-        <field name="res_model">product.product</field>
+        <field name="res_model">product.template</field>
         <field name="view_mode">tree,form,kanban</field>
         <field name="view_id" ref="steam.videogame_tree"/>
     </record>
 
     <record id="videogame_tree" model="ir.ui.view">
         <field name="name">steam.videogame.tree</field>
-        <field name="model">product.product</field>
+        <field name="model">product.template</field>
         <field name="arch" type="xml">
             <tree string="Video Games List">
                 <field name="name"/>
@@ -22,9 +22,12 @@
 
     <record id="videogame_form" model="ir.ui.view">
         <field name="name">steam.videogame.form</field>
-        <field name="model">product.product</field>
-        <field name="inherit_id" ref="product.product_normal_form_view"/>
+        <field name="model">product.template</field>
+        <field name="inherit_id" ref="product.product_template_only_form_view"/>
         <field name="arch" type="xml">
+
+
+
             <xpath expr="//group[@name='group_standard_price']" position="after">
                 <group>
                     <field name="release_date" string="Release Date: "/>

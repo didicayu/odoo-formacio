@@ -2,7 +2,7 @@ from odoo import fields, models
 
 
 class VideoGame(models.Model):
-    _inherit = "product.product"
+    _inherit = "product.template"
 
     release_date = fields.Date(copy=False, required=True, default=fields.date.today())
     developer = fields.Char(required=True, copy=False, default="Unknown Developer Inc.")

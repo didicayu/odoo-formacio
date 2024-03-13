@@ -1,10 +1,11 @@
-from odoo import fields, models
+from odoo import fields, models, api
 
 
 class VideoGame(models.Model):
     _inherit = "product.template"
 
     release_date = fields.Date(copy=False, required=True, default=fields.date.today())
+    coming_soon = fields.Boolean(copy=False, compute='_compute_coming_soon', store=True)
     developer = fields.Char(required=True, copy=False, default="Unknown Developer Inc.")
     pegi_rating = fields.Selection(
         string="PEGI Rating",
@@ -22,3 +23,9 @@ class VideoGame(models.Model):
     # )
 
     # reviews_ids
+
+    @api.depends('release_date')
+    def _compute_coming_soon(self):
+        for game in self:
+            game.coming_soon = (game.release_date > fields.Date.today())
+

@@ -6,6 +6,15 @@
         <field name="view_id" ref="steam.videogame_tree"/>
     </record>
 
+<!--    Coming Soon views-->
+<!--    <record id="comingsoon_action" model="ir.actions.act_window">-->
+<!--        <field name="name">Coming Soon</field>-->
+<!--        <field name="res_model">product.template</field>-->
+<!--        <field name="view_mode">tree,form,kanban</field>-->
+<!--        <field name="view_id" ref=""/>-->
+<!--    </record>-->
+<!--    ****************************************-->
+
     <record id="videogame_tree" model="ir.ui.view">
         <field name="name">steam.videogame.tree</field>
         <field name="model">product.template</field>
@@ -26,7 +35,17 @@
         <field name="inherit_id" ref="product.product_template_only_form_view"/>
         <field name="arch" type="xml">
 
+<!--            USED TO DEBUG COMING SOON-->
+<!--            <xpath expr="//div[@name='options']" position="inside">-->
+<!--                <field name="coming_soon"/>-->
+<!--                <label for="coming_soon"/>-->
+<!--            </xpath>-->
 
+            <xpath expr="//sheet" position="before">
+                <field name="coming_soon" invisible="1"/>
+                <widget name="web_ribbon" title="Coming Soon!" bg_color="bg-danger"
+                        attrs="{'invisible': [('coming_soon','=',False)]}"/>
+            </xpath>
 
             <xpath expr="//group[@name='group_standard_price']" position="after">
                 <group>
@@ -38,6 +57,27 @@
                     <field name="game_tag_ids" string="Game Tags" widget="many2many_tags" options="{'color_field': 'color', 'no_create': True}"/>
                 </group>
             </xpath>
+        </field>
+    </record>
+
+<!--    Coming Soon search filter-->
+    <record id="videogame_search" model="ir.ui.view">
+        <field name="name">steam.videogame.search</field>
+        <field name="model">product.template</field>
+        <field name="inherit_id" ref="product.product_template_search_view"/>
+        <field name="arch" type="xml">
+            <xpath expr="//field" position="after">
+                <field name="name" string="Title"/>
+                <field name="developer" string="Developer"/>
+            </xpath>
+
+            <xpath expr="//filter" position="after">
+                <filter string="Coming Soon" name="filter_comingsoon" domain="[('coming_soon','=',True)]"/>
+            </xpath>
+<!--            <search string="Search VideoGames">-->
+
+<!--                <filter string="Coming Soon" name="filter_comingsoon" domain="[('coming_soon','=',True)]"/>-->
+<!--            </search>-->
         </field>
     </record>
 </odoo>

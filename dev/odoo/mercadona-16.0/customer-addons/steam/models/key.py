@@ -7,7 +7,7 @@ from odoo import fields, models, api
 class Key(models.Model):
     _name = "steam.key"
 
-    key_code = fields.Char(readonly=True)
+    key_code = fields.Char(readonly=True, store=True)
     validity_deadline = fields.Date(string="Key's Validity", default=fields.Date.add(fields.date.today(), years=10))
 
     game_id = fields.Many2one("product.product", string="Game", required=True)

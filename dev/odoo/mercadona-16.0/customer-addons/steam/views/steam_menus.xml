@@ -2,6 +2,7 @@
     <menuitem id="steam_menu_root" name="Steam">
         <menuitem id="products_first_level_menu" name="Products">
             <menuitem id="videogame_menu_action" name="Video Games" action="videogame_action"/>
+<!--            <menuitem id="comingsoon_menu_action" name="Coming Soon" action="comingsoon_action"/>-->
         </menuitem>
 
         <menuitem id="configuration_first_level_menu" name="Configuration">

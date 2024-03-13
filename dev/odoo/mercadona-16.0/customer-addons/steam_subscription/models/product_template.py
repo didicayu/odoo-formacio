@@ -16,6 +16,8 @@ class ProductTemplate(models.Model):
         SUBSCRIPTION_TYPES,
         string='Subscription Type')
 
+    # TODO fecha inicio y fecha de fin variable, enviar mail cuando queden 5 dias para finalizar subscripción
+
     @api.onchange('is_subscription')
     def _onchange_is_subscription(self):
         if self.is_subscription:

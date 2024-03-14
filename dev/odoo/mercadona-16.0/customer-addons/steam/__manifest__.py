@@ -15,6 +15,7 @@
         'views/key_views.xml',
         'views/users_views.xml',
         'views/steam_menus.xml',
+        'views/signup_template.xml',
     ],
     'application': True,
 }

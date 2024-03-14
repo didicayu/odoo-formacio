@@ -9,6 +9,7 @@
     """,
     'data': [
         'security/ir.model.access.csv',
+        'data/subscription_data.xml',
         'views/product_template_views.xml',
     ],
     'application': True,

@@ -1,0 +1,11 @@
+<odoo>
+    <template id="website_signup_extend" inherit_id="auth_signup.fields" name="Auth signup is_franchise form field">
+        <xpath expr="//div[last()]" position="after">
+            <div class="form-group field-login">
+                <label for="is_franchise">Is a Franchise? </label>
+                <br/>
+                <input type="checkbox" name="is_franchise"/>
+            </div>
+        </xpath>
+    </template>
+</odoo>

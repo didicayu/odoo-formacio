@@ -21,12 +21,16 @@ class ProductTemplate(models.Model):
     @api.onchange('is_subscription')
     def _onchange_is_subscription(self):
         if self.is_subscription:
-            self._create_subscription_variants()
+            self.access_data()
 
-    def _create_subscription_variants(self):
-        for key, value in SUBSCRIPTION_TYPES:
-            variant = self.env['product.product'].create({
-                'name': value,
-                'product_tmpl_id': self.id,
-                # Add any other fields you want to set for the variant
-            })
+    def access_data(self):
+        subscription_attribute = self.env.ref('steam_subscription.product_subscription_attribute')
+        subscription_values = self.env['product.attribute.value'].search(
+            [('attribute_id', '=', subscription_attribute.id)])
+
+        print("------------Subscription Variants---------------")
+        for value in subscription_values:
+            print("Name:", value.name)
+            print("Attribute:", value.attribute_id.name)
+            print("Sequence:", value.sequence)
+            print("\n")

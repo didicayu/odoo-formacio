@@ -1,14 +1,14 @@
 <odoo>
     <record id="steam_users_action" model="ir.actions.act_window">
         <field name="name"> Steam Users </field>
-        <field name="res_model">res.users</field>
+        <field name="res_model">res.partner</field>
         <field name="view_mode">tree,form</field>
 <!--        igual cal view id-->
     </record>
 
     <record id="steam_users_tree" model="ir.ui.view">
         <field name="name">steam.users.tree</field>
-        <field name="model">res.users</field>
+        <field name="model">res.partner</field>
         <field name="arch" type="xml">
             <tree>
                 <field name="name"/>
@@ -18,8 +18,8 @@
 
     <record id="steam_users_form" model="ir.ui.view">
         <field name="name">steam.users.form</field>
-        <field name="model">res.users</field>
-        <field name="inherit_id" ref="base.view_users_simple_form"/>
+        <field name="model">res.partner</field>
+        <field name="inherit_id" ref="base.view_partner_form"/>
         <field name="arch" type="xml">
             <xpath expr="//page" position="after">
                 <page string="Steam VideoGames">

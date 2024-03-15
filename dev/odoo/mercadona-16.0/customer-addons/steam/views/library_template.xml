@@ -1,0 +1,14 @@
+<odoo>
+    <template id="library_template">
+        <h2>Partner: <t t-esc="partner.name"/></h2>
+        <h3>Games:</h3>
+        <ul>
+            <t t-foreach="games" t-as="game">
+                <li><t t-esc="game.name"/></li>
+            </t>
+        </ul>
+    </template>
+
+
+</odoo>
+

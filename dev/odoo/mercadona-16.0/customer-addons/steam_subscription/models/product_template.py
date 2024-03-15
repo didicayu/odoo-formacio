@@ -39,13 +39,29 @@ class ProductTemplate(models.Model):
             self.env['product.template.attribute.line'].create(attribute_line_vals)
 
     def remove_subscription_variants(self):
-        subscription_variants = self.env['product.product'].search([
+        subscription_attribute = self.env.ref('steam_subscription.product_subscription_attribute')
+
+        subscription_variants = self.env['product.template.attribute.line'].search([
             ('product_tmpl_id', '=', self.id),
-            ('product_template_attribute_value_ids.attribute_id', '=',
-             self.env.ref('steam_subscription.product_subscription_attribute').id),
-            ('product_template_attribute_value_ids.attribute_id.value_ids', '!=', False)
+            ('attribute_id', '=', subscription_attribute.id)
         ])
-        subscription_variants.unlink()
+
+        print("Search Results:", subscription_variants)
+
+        if subscription_variants:
+            for variant in subscription_variants:
+                print("Variant ID:", variant.id)
+                print("Variant Name:", variant.name)
+                print("Attributes:", variant.attribute_value_ids.mapped('attribute_id.name'))
+
+            subscription_variants.unlink()
+            self.env['product.template.attribute.line'].search([
+                ('product_tmpl_id', '=', self.id),
+                ('attribute_id', '=', subscription_attribute.id),
+            ]).unlink()
+            print("Subscription variants and related attribute lines successfully removed.")
+        else:
+            print("No subscription variants found.")
 
     def access_data(self):
         subscription_attribute = self.env.ref('steam_subscription.product_subscription_attribute')

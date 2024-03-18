@@ -1,14 +1,28 @@
 <odoo>
     <template id="library_template">
-        <h2>Partner: <t t-esc="partner.name"/></h2>
-        <h3>Games:</h3>
-        <ul>
-            <t t-foreach="games" t-as="game">
-                <li><t t-esc="game.name"/></li>
-            </t>
-        </ul>
+        <t t-call="website.layout">
+            <div class="container py-5">
+                <div class="row">
+                    <div class="col-md-8 mx-auto">
+                        <div class="card">
+                            <div class="card-body">
+                                <h2 class="card-title">Partner: <span class="text-primary" t-field="partner.name"/></h2>
+                                <hr/>
+                                <h3 class="card-subtitle mb-4">Games:</h3>
+                                <ul class="list-group">
+                                    <t t-foreach="games" t-as="game">
+                                        <li class="list-group-item d-flex justify-content-between align-items-center">
+                                            <a t-attf-href="/game-details/#{game.id}">
+                                                <span><t t-esc="game.name"/></span>
+                                            </a>
+                                        </li>
+                                    </t>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </t>
     </template>
-
-
 </odoo>
-

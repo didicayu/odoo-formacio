@@ -19,7 +19,7 @@
         "views/attachment_queue_views.xml",
         "views/attachment_synchronize_task_views.xml",
         "views/storage_backend_views.xml",
-        "data/cron.xml",
+        "data/ir_cron_mail_subscription.xml",
         "security/ir.model.access.csv",
     ],
     "demo": ["demo/attachment_synchronize_task_demo.xml"],

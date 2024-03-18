@@ -18,7 +18,7 @@
         'views/res_partner_views.xml',
         'views/res_company_views.xml',
         'views/res_config_settings_views.xml',
-        'data/cron.xml',
+        'data/ir_cron_mail_subscription.xml',
     ],
     'auto_install': True,
     'assets': {

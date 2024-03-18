@@ -10,6 +10,7 @@
     'data': [
         'security/ir.model.access.csv',
         'data/subscription_data.xml',
+        'data/ir_cron_mail_subscription.xml',
         'views/product_template_views.xml',
     ],
     'application': True,

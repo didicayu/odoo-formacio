@@ -17,6 +17,7 @@
         'views/steam_menus.xml',
         'views/signup_template.xml',
         'views/library_template.xml',
+        'views/game_details_template.xml',
     ],
     'application': True,
 }

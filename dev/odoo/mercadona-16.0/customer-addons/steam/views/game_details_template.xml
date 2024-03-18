@@ -1,0 +1,29 @@
+<odoo>
+    <template id="game_details_template">
+    <t t-call="website.layout">
+        <div class="container py-5">
+            <div class="row">
+                <div class="col-md-8 mx-auto">
+                    <div class="card">
+                        <div class="card-body">
+                            <h2 class="card-title">Game Details: <t t-esc="game.name"/></h2>
+                            <hr/>
+                            <h3>Keys:</h3>
+                            <ul>
+                                <t t-foreach="keys" t-as="key">
+                                    <li>
+                                        <p>Key: <t t-esc="key.key_code"/></p>
+                                        <p>Validity Deadline: <t t-esc="key.validity_deadline"/></p>
+                                    </li>
+                                </t>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </t>
+</template>
+
+</odoo>
+

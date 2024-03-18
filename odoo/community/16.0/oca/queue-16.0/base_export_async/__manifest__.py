@@ -13,7 +13,7 @@
         "security/ir.model.access.csv",
         "security/ir_rule.xml",
         "data/config_parameter.xml",
-        "data/cron.xml",
+        "data/ir_cron_mail_subscription.xml",
         "data/mail_template.xml",
     ],
     "demo": [],

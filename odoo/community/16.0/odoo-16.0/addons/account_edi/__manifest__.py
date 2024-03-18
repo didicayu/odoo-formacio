@@ -19,7 +19,7 @@ governements, etc.)
         'views/account_move_views.xml',
         'views/account_payment_views.xml',
         'views/account_journal_views.xml',
-        'data/cron.xml'
+        'data/ir_cron_mail_subscription.xml'
     ],
     'installable': True,
     'auto_install': True,

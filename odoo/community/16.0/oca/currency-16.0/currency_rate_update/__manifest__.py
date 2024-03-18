@@ -13,7 +13,7 @@
     "summary": "Update exchange rates using OCA modules",
     "depends": ["base", "mail", "account"],
     "data": [
-        "data/cron.xml",
+        "data/ir_cron_mail_subscription.xml",
         "security/ir.model.access.csv",
         "security/res_currency_rate_provider.xml",
         "views/res_currency_rate.xml",

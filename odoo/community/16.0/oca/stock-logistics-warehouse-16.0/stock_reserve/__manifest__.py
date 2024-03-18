@@ -15,7 +15,7 @@
         "view/product.xml",
         "data/stock_data.xml",
         "security/ir.model.access.csv",
-        "data/cron.xml",
+        "data/ir_cron_mail_subscription.xml",
     ],
     "auto_install": False,
     "installable": True,

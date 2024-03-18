@@ -1,1 +1,1 @@
-from . import library_controller
+from . import library_controller, game_details

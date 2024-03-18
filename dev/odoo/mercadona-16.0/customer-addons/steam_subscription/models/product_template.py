@@ -16,7 +16,37 @@ class ProductTemplate(models.Model):
         SUBSCRIPTION_TYPES,
         string='Subscription Type')
 
-    # TODO fecha inicio y fecha de fin variable, enviar mail cuando queden 5 dias para finalizar subscripción
+    @api.model
+    def send_subscription_expiry_notifications(self):
+        # Fetch subscriptions expiring in 5 days
+        expiry_date_limit = fields.Date.add(fields.Date.today(), days=5)
+        expiring_keys = self.env['steam.key'].search([
+            ('validity_deadline', '=', expiry_date_limit)
+        ])
+
+        # Group expiring keys by user
+        expiring_keys_by_user = {}
+        for key in expiring_keys:
+            if key.user_id not in expiring_keys_by_user:
+                expiring_keys_by_user[key.user_id] = []
+            expiring_keys_by_user[key.user_id].append(key)
+
+        # Send email notifications for expiring keys
+        for user, keys in expiring_keys_by_user.items():
+            # Compose email content
+            subject = "Your subscription is about to expire"
+            body = f"Dear {user.name},\n\nYour subscription for the following games is ending soon:\n"
+            for key in keys:
+                body += f"- {key.game_id.name}, expiring on {key.validity_deadline}\n"
+            body += "\nPlease renew your subscription to continue enjoying our services.\n\nBest regards,\nThe Subscription Team"
+
+            # Send email
+            user.message_post(
+                body=body,
+                subject=subject,
+                partner_ids=[user.partner_id.id],
+                subtype='mail.mt_comment'
+            )
 
     @api.onchange('is_subscription')
     def _onchange_is_subscription(self):

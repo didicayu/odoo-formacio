@@ -1,1 +1,1 @@
-from . import library_controller, game_details
+from . import library_controller, game_details, custom_signup, custom_payment_confirmation, automatic_pricelist

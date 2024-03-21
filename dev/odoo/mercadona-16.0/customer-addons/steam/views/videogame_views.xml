@@ -40,6 +40,7 @@
 
             <xpath expr="//group[@name='group_standard_price']" position="after">
                 <group>
+                    <field name="visibility" string="Game visibility"/>
                     <field name="release_date" string="Release Date: "/>
                     <field name="developer" string="Developer: "/>
                     <field name="pegi_rating" string="PEGI Rating: "/>

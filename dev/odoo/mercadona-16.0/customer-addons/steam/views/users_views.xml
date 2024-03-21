@@ -24,6 +24,8 @@
             <xpath expr="//page" position="after">
                 <page string="Steam VideoGames">
                     <field name="games_ids"/>
+                    <field name="is_franchise"/>
+                    <label for="is_franchise" string="Is franchise: "/>
                 </page>
             </xpath>
         </field>

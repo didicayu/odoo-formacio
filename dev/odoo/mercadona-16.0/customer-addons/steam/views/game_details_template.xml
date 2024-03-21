@@ -6,7 +6,7 @@
                 <div class="col-md-8 mx-auto">
                     <div class="card">
                         <div class="card-body">
-                            <h2 class="card-title">Game Details: <t t-esc="game.name"/></h2>
+                            <h2 class="card-title">Game Details: <span class="text-primary" t-field="game.name"/></h2>
                             <hr/>
                             <h3>Keys:</h3>
                             <ul>

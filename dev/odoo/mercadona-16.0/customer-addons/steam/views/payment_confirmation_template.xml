@@ -1,0 +1,18 @@
+<odoo>
+    <template id="custom_website_sale_confirmation" inherit_id="website_sale.confirmation">
+        <xpath expr="//table" position="after">
+            <!-- Add your custom content here -->
+            <div class="game_key_info mt-3">
+                <h3>Your game keys:</h3>
+                <ul class="list-group">
+                    <t t-foreach="key_info" t-as="key_info_item">
+                        <li class="list-group-item">
+                           <p>Your key for the game '<t t-esc="key_info_item['game_name']"/>' is: <strong><t t-esc="key_info_item['key']"/></strong></p>
+                        </li>
+                    </t>
+                </ul>
+            </div>
+        </xpath>
+    </template>
+
+</odoo>

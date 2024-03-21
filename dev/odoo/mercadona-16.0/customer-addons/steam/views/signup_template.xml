@@ -4,7 +4,7 @@
             <div class="form-group field-login">
                 <label for="is_franchise">Is a Franchise? </label>
                 <br/>
-                <input type="checkbox" name="is_franchise"/>
+                <input type="checkbox" name="is_franchise" id="is_franchise"/>
             </div>
         </xpath>
     </template>

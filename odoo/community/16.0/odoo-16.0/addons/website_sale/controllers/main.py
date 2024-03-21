@@ -314,6 +314,7 @@ class WebsiteSale(http.Controller):
             request.session['website_sale_pricelist_time'] = now
             request.session['website_sale_current_pl'] = pricelist.id
 
+        # TODO añadir logica pricelist
         request.update_context(pricelist=pricelist.id, partner=request.env.user.partner_id)
 
         filter_by_price_enabled = website.is_view_active('website_sale.filter_products_price')

@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<templates id="template" xml:space="preserve">
+
+    <t t-name="ProductItemWithStock" owl="1">
+        <t t-inherit="ProductItem">
+            <xpath expr="//div[@class='product-content']" position="inside">
+                <span class="stock-tag">
+                    Stock: <t>2</t> <!-- Static stock number, replace with dynamic data as needed -->
+                </span>
+            </xpath>
+        </t>
+    </t>
+
+</templates>

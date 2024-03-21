@@ -18,6 +18,7 @@
         'views/signup_template.xml',
         'views/library_template.xml',
         'views/game_details_template.xml',
+        'views/payment_confirmation_template.xml',
     ],
     'application': True,
 }

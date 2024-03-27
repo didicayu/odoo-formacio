@@ -1,0 +1,30 @@
+<?xml version="1.0"?>
+<odoo>
+    <record id="config_action" model="ir.actions.act_window">
+        <field name="name">Franchise Configuration</field>
+        <field name="res_model">franchise.config</field>
+        <field name="view_mode">form</field>
+        <field name="target">new</field>
+        <field name="context">{'default_name': 'Franchise Name'}</field>
+    </record>
+
+    <record id="franchise_config_form_view" model="ir.ui.view">
+        <field name="name">franchise.config.form</field>
+        <field name="model">franchise.config</field>
+        <field name="arch" type="xml">
+            <form string="Franchise Configuration">
+                <group>
+                    <field name="name"/>
+                    <field name="central_system_url"/>
+                    <field name="api_key"/>
+                </group>
+                <footer>
+                    <button string="Test Connection" type="object" name="test_connection" class="btn-primary"/>
+                    <button string="Save" type="object" name="save_configuration" class="btn-primary"/>
+                    <button string="Cancel" special="cancel"/>
+                </footer>
+            </form>
+        </field>
+    </record>
+
+</odoo>

@@ -1,0 +1,11 @@
+
+
+/* /web/static/src/core/ui/block_ui.scss */
+
+.o_blockUI {
+  cursor: wait;
+  -webkit-backdrop-filter: blur(2px);
+  backdrop-filter: blur(2px);
+  z-index: 1070 !important;
+}
+//*# sourceMappingURL=/web/assets/966-4b7407e/point_of_sale.pos_assets_backend_style.css.map */

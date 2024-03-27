@@ -1,33 +1,33 @@
-odoo.define('steam_custom.CustomProductItem', function(require) {
-    'use strict';
+///** @odoo-module **/
+//
+//import { Component, useState } from "@odoo/owl";
+//
+//const ProductItem = require('point_of_sale.ProductItem');
+//const PosComponent = require('point_of_sale.PosComponent');
+//
+//export class StockCount extends ProductItem {
+//    setup() {
+//        this.stock = 0;
+//        debug.log("a")
+//    }
+//}
+//
+//StockCount.template = "point_of_sale.ProductItem";
 
-    const ProductItem = require('point_of_sale.ProductItem');
+odoo.define("steam.ProductItem", function (require) {
+    "use strict";
 
-    class CustomProductItem extends ProductItem {
-        async getStock() {
-            const productId = this.props.product.id;
-            const stock = await this.rpc({
-                model: 'stock.quant',
-                method: 'search_read',
-                domain: [['product_id', '=', productId]],
-                fields: ['product_id', 'quantity'],
-                limit: 1, // Assuming one record per product
-            });
-            return stock.length ? stock[0].quantity : 0;
-        }
+    const ProductItem = require("point_of_sale.ProductItem");
 
-        async updatePriceAndStock() {
-            const stock = await this.getStock();
-            const priceElement = this.el.querySelector('.price-tag');
-            const priceText = priceElement.textContent.trim();
-            priceElement.textContent = `${priceText} - Stock: ${stock}`;
-        }
+    const StockCount = (ProductItem) =>
+        class StockCount extends ProductItem {
+            async onProductInfoClick(event) {
+                event.stopPropagation();
+                return await super.onProductInfoClick(...arguments);
+            }
+        };
 
-        mounted() {
-            super.mounted();
-            this.updatePriceAndStock();
-        }
-    }
+    Registries.Component.extend(ProductItem, QuickInfoProductItem);
 
-    return CustomProductItem;
+    return QuickInfoProductItem;
 });

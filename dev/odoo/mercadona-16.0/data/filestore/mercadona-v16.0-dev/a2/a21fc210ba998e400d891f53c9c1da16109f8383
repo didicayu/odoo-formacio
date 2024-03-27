@@ -1,0 +1,2 @@
+)]}'
+{"version": 3, "sources": ["/web/static/src/core/ui/block_ui.scss"], "mappings": ";AAAA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA", "sourcesContent": ["\n/* /web/static/src/core/ui/block_ui.scss */\n\n.o_blockUI {\n  cursor: wait;\n  -webkit-backdrop-filter: blur(2px);\n  backdrop-filter: blur(2px);\n  z-index: 1070 !important;\n}"], "file": "/web/assets/967-4b7407e/point_of_sale.pos_assets_backend_style.css", "sourceRoot": "../../../"}

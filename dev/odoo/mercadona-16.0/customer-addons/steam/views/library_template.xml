@@ -13,8 +13,10 @@
                                     <t t-foreach="games" t-as="game">
                                         <li class="list-group-item d-flex justify-content-between align-items-center">
                                             <a t-attf-href="/game-details/#{game.id}">
-                                                <span><t t-esc="game.name"/></span>
+                                                <span><t t-esc="game.name"/> </span>
                                             </a>
+                                            <!-- Display variant information -->
+
                                         </li>
                                     </t>
                                 </ul>

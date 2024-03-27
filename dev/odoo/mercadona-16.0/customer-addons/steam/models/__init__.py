@@ -1,1 +1,1 @@
-from . import steam, videogame, key, res_users, tag, game_language, partner
+from . import steam, videogame, key, tag, game_language, API_key_user_mixin, partner

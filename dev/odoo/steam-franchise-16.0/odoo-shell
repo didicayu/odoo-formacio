@@ -1,0 +1,3 @@
+#!/bin/bash
+
+./odoo-bin shell --no-http $@

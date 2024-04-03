@@ -51,7 +51,7 @@ class FetchApiDataMixin(models.AbstractModel):
         except Exception as e:
             raise api_exceptions.FetchDataError(f"Failed to fetch data for model '{model}': {e}")
 
-    def save_data(self, model, data):
+    def save_data(self, model, data, excluded_models=[]):
         """
         Save the data received from the API into the specified Odoo model.
         :param model: The name of the Odoo model to save data into.
@@ -67,11 +67,22 @@ class FetchApiDataMixin(models.AbstractModel):
 
         # We need to filter fields because our instance may not have the same modules installed
         # we are just keeping those fields we can use
+
         model_fields = record_model.fields_get()
+
+        excluded_fields = {}
+
+        # filter undesired model fields
+        for ex_model in excluded_models:
+            excluded_model = self.env[ex_model]
+            excluded_models_fields = excluded_model.fields_get()
+            excluded_fields.update(excluded_models_fields)
 
         for record_data in data:
             # Filter out fields that do not exist in the Franchise instance
-            filtered_record_data = {key: record_data[key] for key in record_data if key in model_fields}
+            # Also filters undesired fields
+            filtered_record_data = {key: record_data[key] for key in record_data if
+                                    key in model_fields and key not in excluded_fields}
 
             # Preprocess fields with list values
             for field, value in filtered_record_data.items():
@@ -83,31 +94,38 @@ class FetchApiDataMixin(models.AbstractModel):
                         # Extract the first element from the list
                         filtered_record_data[field] = value[0]
 
-            record = record_model.search([('id', '=', filtered_record_data.get('id'))])
+            record = record_model.search([('id', '=', filtered_record_data.get('id'))])  # FIXME possible id conflict
             if record:
                 # Attempt to update existing record
-                try:
-                    record.write(filtered_record_data)
-                except Exception as update_error:
-                    # If update fails (e.g., due to constraint violation), delete existing record and create a new one
-                    # record.unlink()
-                    self.env.cr.rollback() # Start a new transaction
-                    record.write({'active': False})
-
-                    self._create_new_record(data, filtered_record_data, record_model)
+                # try:
+                record.write(filtered_record_data)
+                # except Exception as update_error:
+                #     # If update fails (e.g., due to constraint violation), delete existing record and create a new one
+                #     # record.unlink()
+                #     self.env.cr.rollback()  # Start a new transaction
+                #     record.write({'active': False})
+                #
+                #     self._create_new_record(data, filtered_record_data, record_model)
             else:
                 # Create new record
 
                 self._create_new_record(data, filtered_record_data, record_model)
 
-            # self.env.cr.commit() # We might need to commit the changes to the database idk idk
-            return True
+            self.env.cr.commit()  # We might need to commit the changes to the database idk idk
+
+        return True
 
     def _create_new_record(self, data, record_data, record_model):
         old_record_id = record_data.get('id')
         print(f"old record id: {old_record_id}")
 
-        new_record = record_model.create(record_data) # FIXME permission error
+        try:
+            new_record = record_model.create(record_data)  # FIXME permission error
+        except Exception as e:
+            if "Record does not exist" in str(e):
+                self._resolve_id_dependencies()
+
+
         new_record.write({'original_id': old_record_id})
 
         print(f"original id: {new_record.original_id}")
@@ -116,7 +134,10 @@ class FetchApiDataMixin(models.AbstractModel):
 
         if old_record_id != new_record.id:
             self._fix_related_ids(data)
-    def synchronize_models(self, record_models):
+
+    def _resolve_id_dependencies(self):
+
+    def synchronize_models(self, record_models, excluded_models=[]):
         """
         Synchronize data for multiple models.
 
@@ -127,7 +148,7 @@ class FetchApiDataMixin(models.AbstractModel):
             if data is None:
                 raise api_exceptions.FetchDataError(f"Failed to fetch data for model '{model}'")
 
-            success = self.save_data(model, data)
+            success = self.save_data(model, data, excluded_models)
             if not success:
                 raise api_exceptions.SaveDataError(f"Failed to save data for model '{model}'")
 

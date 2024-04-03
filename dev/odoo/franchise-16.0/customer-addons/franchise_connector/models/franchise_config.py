@@ -51,8 +51,9 @@ class FranchiseConfig(models.TransientModel):
         })
 
         record_models = ['product.template', 'product.product']
+        excluded_model_fields = ['mail.thread']
         self.set_auth_data(self.central_db, self.franchise_username, self.franchise_password, self.central_system_url, self.api_key)
-        self.synchronize_models(record_models)
+        self.synchronize_models(record_models, excluded_model_fields)
 
         # Return a dictionary to close the wizard
         return {'type': 'ir.actions.act_window_close'}

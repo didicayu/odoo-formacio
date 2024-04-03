@@ -1,7 +1,7 @@
 {
     'name': "Steam franchise connector",
     'version': '1.0',
-    'depends': ['base', 'product'],
+    'depends': ['base', 'product', 'stock'],
     'author': "Dídac Cayuela",
     'category': 'API connector',
     'description': """

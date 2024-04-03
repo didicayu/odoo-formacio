@@ -26,8 +26,8 @@ class MailIceServer(models.Model):
             formatted_ice_server = {
                 'urls': '%s:%s' % (ice_server.server_type, ice_server.uri),
             }
-            if ice_server.username:
-                formatted_ice_server['username'] = ice_server.username
+            if ice_server.franchise_username:
+                formatted_ice_server['username'] = ice_server.franchise_username
             if ice_server.credential:
                 formatted_ice_server['credential'] = ice_server.credential
             formatted_ice_servers.append(formatted_ice_server)

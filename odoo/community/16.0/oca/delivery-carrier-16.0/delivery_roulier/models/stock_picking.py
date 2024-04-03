@@ -107,7 +107,7 @@ class StockPicking(models.Model):
         """
         auth = {
             "login": account.account,
-            "password": account.password,
+            "password": account.franchise_password,
             "isTest": not self.carrier_id.prod_environment,
         }
         return auth

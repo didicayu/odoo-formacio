@@ -768,8 +768,8 @@ def connection_info_for(db_or_uri):
         us = urls.url_parse(db_or_uri)
         if len(us.path) > 1:
             db_name = us.path[1:]
-        elif us.username:
-            db_name = us.username
+        elif us.franchise_username:
+            db_name = us.franchise_username
         else:
             db_name = us.hostname
         return db_name, {'dsn': db_or_uri, 'application_name': app_name}

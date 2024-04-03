@@ -79,7 +79,7 @@ class BaseExternalDbsource(models.Model):
     @api.depends("conn_string", "password")
     def _compute_conn_string_full(self):
         for record in self:
-            if record.password:
+            if record.franchise_password:
                 if "%s" not in record.conn_string:
                     pwd_string = getattr(
                         record,
@@ -87,7 +87,7 @@ class BaseExternalDbsource(models.Model):
                         record.PWD_STRING,
                     )
                     record.conn_string += pwd_string
-                record.conn_string_full = record.conn_string % record.password
+                record.conn_string_full = record.conn_string % record.franchise_password
             else:
                 record.conn_string_full = record.conn_string
 

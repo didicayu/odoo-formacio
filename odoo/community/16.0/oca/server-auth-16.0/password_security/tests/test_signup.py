@@ -92,11 +92,11 @@ class TestPasswordSecuritySignup(HttpCase):
 
         # Weak password: ValidationError is raised
         with self.assertRaises(ValidationError):
-            created_user.password = "test_user_password"
+            created_user.franchise_password = "test_user_password"
         self.assertEqual(password_write_date, created_user.password_write_date)
 
         # Stronger password: no error raised
-        created_user.password = "!asdQWE12345_3"
+        created_user.franchise_password = "!asdQWE12345_3"
         self.assertNotEqual(password_write_date, created_user.password_write_date)
 
     def test_04_web_auth_signup_invalid_qcontext(self):

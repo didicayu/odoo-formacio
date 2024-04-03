@@ -1,0 +1,18 @@
+<odoo>
+    <record id="iframe_action" model="ir.actions.act_window">
+        <field name="name">Steam-Shop</field>
+        <field name="res_model">franchise.iframe</field>
+        <field name="view_mode">form</field>
+        <field name="target">inline</field>
+    </record>
+
+    <record id="iframe_form" model="ir.ui.view">
+        <field name="name">Steam-Shop</field>
+        <field name="model">franchise.iframe</field>
+        <field name="arch" type="xml">
+            <form string="Steam shop" style="margin: 0;">
+                <iframe src="http://localhost:8080" frameborder="no" style="display: block; width: 100vw; height:100vh;"/>
+            </form>
+        </field>
+    </record>
+</odoo>

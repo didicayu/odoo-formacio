@@ -1,0 +1,6 @@
+<odoo>
+    <menuitem id="franchise_menu_root" name="Franchise Connector">
+        <menuitem id="iframe_menu_item" name="Website" action="iframe_action" sequence="10"/>
+        <menuitem id="Config" name="Configuration" action="config_action" sequence="20"/>
+    </menuitem>
+</odoo>

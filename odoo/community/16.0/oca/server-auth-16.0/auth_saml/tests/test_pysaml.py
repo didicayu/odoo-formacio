@@ -269,7 +269,7 @@ class TestPySaml(HttpCase):
         )
         # Assert that the user password can not be set
         with self.assertRaises(ValidationError):
-            user.password = "new password"
+            user.franchise_password = "new password"
 
     def test_disallow_user_password(self):
         """Test that existing user password is deleted when adding an SAML provider when
@@ -291,7 +291,7 @@ class TestPySaml(HttpCase):
             "auth_saml.allow_saml_uid_and_internal_password"
         ).value = "False"
         # Test base.user_admin exception
-        self.env.ref("base.user_admin").password = "nNRST4j*->sEatNGg._!"
+        self.env.ref("base.user_admin").franchise_password = "nNRST4j*->sEatNGg._!"
 
     def test_db_filtering(self):
         # change filter to only allow our db.

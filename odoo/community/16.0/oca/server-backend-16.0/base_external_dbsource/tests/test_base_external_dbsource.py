@@ -53,8 +53,8 @@ class TestBaseExternalDbsource(common.TransactionCase):
     def test_conn_string_full(self):
         """It should add password if string interpolation not detected"""
         self.dbsource.conn_string = "User=Derp;"
-        self.dbsource.password = "password"
-        expect = self.dbsource.conn_string + "PWD=%s;" % self.dbsource.password
+        self.dbsource.franchise_password = "password"
+        expect = self.dbsource.conn_string + "PWD=%s;" % self.dbsource.franchise_password
         self.assertEqual(self.dbsource.conn_string_full, expect)
 
     # Interface

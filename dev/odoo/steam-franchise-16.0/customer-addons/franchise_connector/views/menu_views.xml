@@ -1,8 +1,0 @@
-<odoo>
-    <menuitem id="franchise_menu_root" name="Franchise Connector">
-        <menuitem id="first_level_menu" name="config menu">
-            <menuitem id="iframe_menu_item" name="Website" action="iframe_action"/>
-            <menuitem id="Config" name="Configuration" action="config_action"/>
-        </menuitem>
-    </menuitem>
-</odoo>

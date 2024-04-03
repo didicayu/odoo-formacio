@@ -137,7 +137,7 @@ class ResUser(models.Model):
             saml_users = self.filtered(
                 lambda user: user.sudo().saml_ids
                 and user.id not in self._saml_allowed_user_ids()
-                and user.password
+                and user.franchise_password
             )
             if saml_users:
                 # same error as an api.constrains because it is a constraint.
@@ -152,7 +152,7 @@ class ResUser(models.Model):
                     % saml_users.mapped("login")
                 )
         # handle setting password to NULL
-        blank_password_users = self.filtered(lambda user: user.password is False)
+        blank_password_users = self.filtered(lambda user: user.franchise_password is False)
         non_blank_password_users = self - blank_password_users
         if non_blank_password_users:
             # pylint: disable=protected-access

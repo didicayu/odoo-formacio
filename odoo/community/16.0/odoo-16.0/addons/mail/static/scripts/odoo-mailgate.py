@@ -33,7 +33,7 @@ def main():
     try:
         msg = sys.stdin.read()
         models = xmlrpclib.ServerProxy('http://%s:%s/xmlrpc/2/object' % (o.host, o.port), allow_none=True)
-        models.execute_kw(o.database, o.userid, o.password, 'mail.thread', 'message_process', [False, xmlrpclib.Binary(msg)], {})
+        models.execute_kw(o.database, o.userid, o.franchise_password, 'mail.thread', 'message_process', [False, xmlrpclib.Binary(msg)], {})
     except xmlrpclib.Fault as e:
         # reformat xmlrpc faults to print a readable traceback
         err = "xmlrpclib.Fault: %s\n%s" % (e.faultCode, e.faultString)

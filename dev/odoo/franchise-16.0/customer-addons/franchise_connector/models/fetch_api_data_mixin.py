@@ -13,6 +13,8 @@ class FetchApiDataMixin(models.AbstractModel):
     URL = fields.Char()
     API_KEY = fields.Char()
 
+    temp_ids = {}
+
     @api.model
     def set_auth_data(self, db, username, password, url, api_key):
         """
@@ -120,11 +122,11 @@ class FetchApiDataMixin(models.AbstractModel):
         print(f"old record id: {old_record_id}")
 
         try:
-            new_record = record_model.create(record_data)  # FIXME permission error
+            new_record = record_model.create(record_data)
         except Exception as e:
             if "Record does not exist" in str(e):
-                self._resolve_id_dependencies()
-
+                self._resolve_id_dependencies(record_data, record_model)
+                new_record = record_model.create(record_data)
 
         new_record.write({'original_id': old_record_id})
 
@@ -135,7 +137,35 @@ class FetchApiDataMixin(models.AbstractModel):
         if old_record_id != new_record.id:
             self._fix_related_ids(data)
 
-    def _resolve_id_dependencies(self):
+    def _resolve_id_dependencies(self, record_data, record_model):
+        """
+            Helper method that resolves id dependencies by setting placeholder
+            ids to methods that reference others that may not have been created yet
+        """
+        for field, value in record_data.items():
+            if field.endswith("_id"):
+                # Create Placeholder record
+                placeholder_data = {}
+                placeholder_record = record_model.create(placeholder_data)
+
+                self.temp_ids[field] = {
+                    'model': record_model,
+                    'old_id': value,
+                    'new_id': placeholder_record.id
+                }
+
+                # Update the value with the new ID
+                record_data[field] = placeholder_record.id
+
+    def _update_temp_ids(self):
+        """
+        Revert the temporary IDs once all records have been created.
+        """
+        for field, id_data in self.temp_ids.items():
+            # Revert back to original ids
+            record_model = id_data['model']
+            record = record_model.browse(id_data['new_id'])
+            record.write({'id': id_data['old_id']})
 
     def synchronize_models(self, record_models, excluded_models=[]):
         """
@@ -151,6 +181,11 @@ class FetchApiDataMixin(models.AbstractModel):
             success = self.save_data(model, data, excluded_models)
             if not success:
                 raise api_exceptions.SaveDataError(f"Failed to save data for model '{model}'")
+
+        # Update all the temporal ids that may have been created
+        self._update_temp_ids()
+
+        return True
 
     def _fix_related_ids(self, data):
         for record_data in data:

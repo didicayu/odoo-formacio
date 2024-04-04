@@ -142,20 +142,29 @@ class FetchApiDataMixin(models.AbstractModel):
             Helper method that resolves id dependencies by setting placeholder
             ids to methods that reference others that may not have been created yet
         """
+
+        field_types = ['many2one', 'one2many', 'many2many']
+
         for field, value in record_data.items():
-            if field.endswith("_id"):
-                # Create Placeholder record
-                placeholder_data = {}
-                placeholder_record = record_model.create(placeholder_data)
+            if field.type in field_types:
 
-                self.temp_ids[field] = {
-                    'model': record_model,
-                    'old_id': value,
-                    'new_id': placeholder_record.id
-                }
+                # Check if the referenced model exists
+                model_of_field = self.env[field.type]
+                record = model_of_field.search([('id', '=', value)])
 
-                # Update the value with the new ID
-                record_data[field] = placeholder_record.id
+                if not record:
+                    # Create Placeholder record
+                    placeholder_data = {}
+                    placeholder_record = record.create(placeholder_data)
+
+                    self.temp_ids[field] = {
+                        'model': record_model,
+                        'old_id': value,
+                        'new_id': placeholder_record.id
+                    }
+
+                    # Update the value with the new ID
+                    record_data[field] = placeholder_record.id
 
     def _update_temp_ids(self):
         """
@@ -166,6 +175,7 @@ class FetchApiDataMixin(models.AbstractModel):
             record_model = id_data['model']
             record = record_model.browse(id_data['new_id'])
             record.write({'id': id_data['old_id']})
+            # TODO maybe try to remove temporary models since we won't be needing them
 
     def synchronize_models(self, record_models, excluded_models=[]):
         """
